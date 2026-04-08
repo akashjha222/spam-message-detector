@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ project_name }}</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <section class="hero">
+        <h1>{{ project_name }}</h1>
+        <p class="subtitle">A custom spam detector built for Akash's task, using text features and a logistic model.</p>
+      </section>
+
+      <section class="checker-card">
+        <form method="post">
+          <label for="message">Type a message to analyze</label>
+          <textarea id="message" name="message" rows="5" placeholder="Enter any text here...">{{ message }}</textarea>
+          <button type="submit">Check for Spam</button>
+        </form>
+
+        {% if prediction %}
+        <div class="result-box {{ prediction }}">
+          <h2>Result: {{ prediction.upper() }}</h2>
+          <p>Confidence: {{ confidence }}</p>
+          <p class="detail">This message is predicted as <strong>{{ prediction }}</strong> by the model.</p>
+        </div>
+        {% endif %}
+      </section>
+
+      <footer>
+        <p>Spam detection model trained on a small SMS dataset. Built by {{ user_name }}.</p>
+      </footer>
+    </main>
+  </body>
+</html>
